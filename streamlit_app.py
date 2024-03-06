@@ -391,16 +391,8 @@ except:
 
 # Show a custom logo (svg or png) or the DataStax logo
 with st.sidebar:
-    try:
-        st.image(f"""./customizations/logo/{username}.svg""", use_column_width="always")
-        st.text('')
-    except:
-        try:
-            st.image(f"""./customizations/logo/{username}.png""", use_column_width="always")
-            st.text('')
-        except:
-            st.image('./customizations/logo/default.svg', use_column_width="always")
-            st.text('')
+    st.image('./customizations/logo/default.svg', use_column_width="always")
+    st.text('')
 
 # Logout button
 with st.sidebar:
@@ -480,11 +472,11 @@ with st.sidebar:
     st.divider()
 
 # Draw rails
-with st.sidebar:
-        st.subheader(lang_dict['rails_1'])
-        st.caption(lang_dict['rails_2'])
-        for i in rails_dict:
-            st.markdown(f"{i}. {rails_dict[i]}")
+# with st.sidebar:
+#         st.subheader(lang_dict['rails_1'])
+#         st.caption(lang_dict['rails_2'])
+#         for i in rails_dict:
+#             st.markdown(f"{i}. {rails_dict[i]}")
 
 # Draw all messages, both user and agent so far (every time the app reruns)
 for message in st.session_state.messages:
@@ -492,13 +484,13 @@ for message in st.session_state.messages:
 
 # Now get a prompt from a user
 question = st.chat_input(lang_dict['assistant_question'])
-with st.sidebar:
-    st.divider()
-    picture = st.camera_input(lang_dict['take_picture'])
-    if picture:
-        response = describeImage(picture.getvalue(), language)
-        picture_desc = response.choices[0].message.content
-        question = picture_desc
+# with st.sidebar:
+#     st.divider()
+#     picture = st.camera_input(lang_dict['take_picture'])
+#     if picture:
+#         response = describeImage(picture.getvalue(), language)
+#         picture_desc = response.choices[0].message.content
+#         question = picture_desc
 
 if question:
     print(f"Got question: {question}")
